@@ -12,9 +12,10 @@ interface MealOutputProps {
   matchScore: number;
   onReset: () => void;
   onTryAgain: () => void;
+  onAddToCart: (meal: string, category: string) => void;
 }
 
-export const MealOutput = ({ meal, category, reason, matchScore, onReset, onTryAgain }: MealOutputProps) => {
+export const MealOutput = ({ meal, category, reason, matchScore, onReset, onTryAgain, onAddToCart }: MealOutputProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const sparklesRef = useRef<HTMLDivElement>(null);
 
@@ -70,7 +71,7 @@ export const MealOutput = ({ meal, category, reason, matchScore, onReset, onTryA
           </div>
 
           <div className="flex gap-3 justify-center flex-wrap">
-            <Button variant="hero" size="lg" className="shadow-lg">
+            <Button variant="hero" size="lg" className="shadow-lg" onClick={() => onAddToCart(meal, category)}>
               Order Now 🍽️
             </Button>
             <Button variant="outline" size="lg" onClick={onTryAgain}>
